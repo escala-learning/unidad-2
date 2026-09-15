@@ -1,0 +1,166 @@
+<style>
+  /* =========================================================
+     PORTADA · Scala Learning
+     Gradiente firma (violeta profundo → violeta → dorado),
+     rueda sangrada, foto enmarcada y film grain sutil.
+     El CSS de portada viaja por curso.
+     ========================================================= */
+  .sl-portada{
+    position:relative; overflow:hidden; isolation:isolate;
+    min-height:100vh; min-height:100dvh;
+    display:flex; align-items:center;
+    background: var(--grad-scala);
+  }
+  /* film grain · textura, no efecto (brandbook p. 17) */
+  .sl-portada::after{
+    content:''; position:absolute; inset:0; z-index:1; pointer-events:none;
+    opacity:.05; mix-blend-mode:overlay;
+    background-image:url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='160' height='160'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='.85' numOctaves='3'/%3E%3C/filter%3E%3Crect width='160' height='160' filter='url(%23n)'/%3E%3C/svg%3E");
+  }
+  /* rueda de marca sangrada por la esquina superior derecha */
+  .sl-portada__rueda{
+    position:absolute; top:-16vw; right:-12vw; z-index:1;
+    --sl-rueda-size:min(56vw, 720px);
+    opacity:.14; pointer-events:none;
+  }
+  .sl-portada__inner{
+    position:relative; z-index:2;
+    width:100%; max-width:1240px; margin:0 auto;
+    padding:clamp(32px, 6vw, 88px);
+    display:grid; grid-template-columns:1fr 1.06fr; gap:clamp(28px, 4vw, 56px);
+    align-items:center;
+  }
+  .sl-portada__logo img{ height:56px; width:auto; display:block; margin-bottom:clamp(28px, 5vh, 56px); }
+  .sl-portada__eyebrow{
+    display:inline-flex; align-items:center; gap:12px;
+    font-family:var(--font-display); font-weight:600; font-size:.78rem;
+    letter-spacing:.16em; text-transform:uppercase;
+    color:var(--c-calido); margin-bottom:18px;
+  }
+  .sl-portada__eyebrow::before{ content:''; width:32px; height:3px; background:var(--c-calido); border-radius:2px; }
+  .sl-portada__title{
+    margin:0 0 18px; color:#fff;
+    font-family:var(--font-display); font-weight:600;
+    font-size:clamp(2.6rem, 5.6vw, 4.2rem); line-height:1.06; letter-spacing:-.02em;
+  }
+  .sl-portada__title .sl-suave{ color:rgba(255,255,255,.68); font-weight:300; }
+  .sl-portada__sub{
+    margin:0 0 28px; color:rgba(255,255,255,.72);
+    font-size:clamp(1rem, 1.6vw, 1.2rem); font-weight:300;
+  }
+  .sl-portada__quote{
+    font-family:var(--font-serif); font-style:italic;
+    color:#fff; font-size:clamp(1.05rem, 1.7vw, 1.3rem); line-height:1.55;
+    max-width:520px; margin:0 0 38px;
+    padding-left:20px; border-left:3px solid var(--c-calido);
+  }
+  /* CTA blanco: sobre el gradiente violeta el amarillo nunca es un control */
+  .sl-portada__cta{
+    display:inline-flex; align-items:center; gap:10px;
+    background:#fff; color:var(--c-acento); text-decoration:none;
+    font-family:var(--font-display); font-weight:600; font-size:1rem;
+    padding:16px 30px; border-radius:999px;
+    box-shadow:0 14px 34px rgba(38,29,74,.35);
+    transition:transform .18s ease, box-shadow .18s ease;
+  }
+  .sl-portada__cta:hover{ transform:translateY(-2px); box-shadow:0 20px 44px rgba(38,29,74,.45); }
+  /* Descarga del cuaderno: acción secundaria, así que solo el icono en un
+     botón circular fantasma. Un pill con texto al lado del CTA competía con
+     la acción principal de entrar al curso. */
+  .sl-portada__acciones{ display:flex; align-items:center; gap:12px; flex-wrap:wrap; }
+  /* Botón fantasma: solo el filo, sin relleno. El feedback no lo da un fondo
+     sino el gesto — al pasar el mouse la flecha cae sobre la bandeja, que es
+     literalmente lo que la acción hace. Por eso el icono es SVG propio: el
+     web component de iconify no deja animar sus partes por dentro. */
+  .sl-portada__descarga{
+    display:inline-grid; place-items:center;
+    width:52px; height:52px; border-radius:50%;
+    color:#fff; text-decoration:none;
+    background:transparent;
+    border:1.5px solid rgba(255,255,255,.45);
+    transition:border-color .2s ease;
+  }
+  .sl-portada__descarga svg{
+    width:21px; height:21px;
+    fill:none; stroke:currentColor;
+    stroke-width:2; stroke-linecap:round; stroke-linejoin:round;
+    overflow:visible;
+  }
+  .sl-portada__descarga .sl-flecha{
+    transition:transform .28s cubic-bezier(.34,1.4,.64,1);
+  }
+  /* El color se fija en los dos estados: el motor tiñe todo enlace en hover
+     (core.css → a:hover{color:acento-deep}) y el trazo, que es currentColor,
+     se volvía violeta sobre el gradiente. */
+  .sl-portada__descarga:hover,
+  .sl-portada__descarga:focus-visible{ border-color:#fff; color:#fff; outline:none; }
+  .sl-portada__descarga:hover .sl-flecha,
+  .sl-portada__descarga:focus-visible .sl-flecha{ transform:translateY(3.5px); }
+  @media (prefers-reduced-motion: reduce){
+    .sl-portada__descarga .sl-flecha{ transition:none; }
+    .sl-portada__descarga:hover .sl-flecha{ transform:none; }
+  }
+  /* La foto va enmarcada por la rueda, que es como la marca trata sus
+     imágenes (brandbook p. 15): el recurso gráfico muerde la fotografía. */
+  .sl-portada__figura{ display:block; }
+  .sl-portada__figura svg{ width:100%; height:auto; display:block;
+    filter: drop-shadow(0 30px 60px rgba(38,29,74,.45)); }
+  @media (max-width: 900px){
+    .sl-portada__inner{ grid-template-columns:1fr; }
+    .sl-portada__figura{ display:none; }
+    .sl-portada__rueda{ --sl-rueda-size:80vw; top:-30vw; opacity:.08; }
+  }
+</style>
+
+<section class="sl-portada">
+  <img class="sl-rueda sl-portada__rueda" src="assets/img/curso/scala-rueda.svg" alt="" aria-hidden="true" />
+
+  <div class="sl-portada__inner">
+    <div>
+      <div class="sl-portada__logo">
+        <img src="assets/img/logos/scala-logo.svg" alt="Scala Learning" />
+      </div>
+
+      <div class="sl-portada__eyebrow">Scala Virtual · Unidad 2</div>
+
+      <h1 class="sl-portada__title">
+        De la respuesta <span class="sl-suave">a la</span> <span class="sl-italic">recomendación</span>
+      </h1>
+
+      <p class="sl-portada__sub">Audita antes de confiar · Toma de decisiones con datos&nbsp;+&nbsp;IA</p>
+
+      <!-- Idea clave de la introducción, literal -->
+      <p class="sl-portada__quote">
+        Auditar no es desconfiar de todo lo que la IA produce; es verificar antes de
+        actuar.
+      </p>
+
+      <div class="sl-portada__acciones">
+        <a class="sl-portada__cta" href="temario.html">
+          Ver el contenido
+          <iconify-icon icon="mdi:arrow-right"></iconify-icon>
+        </a>
+        <a class="sl-portada__descarga" href="{{PDF}}" download title="Descargar el cuaderno de aprendizaje (PDF)" aria-label="Descargar el cuaderno de aprendizaje en PDF" data-ova-pdf-btn><svg viewBox="0 0 24 24" aria-hidden="true"><g class="sl-flecha"><path d="M12 2.5V11.5"/><path d="M8.5 8L12 11.5L15.5 8"/></g><path d="M5 16v2.5a1.5 1.5 0 0 0 1.5 1.5h11a1.5 1.5 0 0 0 1.5-1.5V16"/></svg></a>
+      </div>
+    </div>
+
+    <div class="sl-portada__figura">
+      <svg viewBox="0 0 520 520" role="img"
+           aria-label="Retrato de un profesional pensativo frente a su portátil, enmarcado por la rueda de Scala Learning.">
+        <defs>
+          <clipPath id="clipPortadaFoto"><circle cx="260" cy="260" r="222"/></clipPath>
+        </defs>
+        <image href="assets/img/curso/portada-persona.webp"
+               x="38" y="38" width="444" height="444"
+               preserveAspectRatio="xMidYMid slice" clip-path="url(#clipPortadaFoto)"/>
+        <circle cx="260" cy="260" r="222" fill="none" stroke="#FFFFFF" stroke-opacity=".22" stroke-width="2"/>
+        <g class="sl-rueda-portada" fill="none" stroke-width="30" transform="rotate(-48 260 260)">
+          <circle cx="260" cy="260" r="222" stroke="#503B96" stroke-dasharray="282.7 1112.2" stroke-dashoffset="0"/>
+          <circle cx="260" cy="260" r="222" stroke="#F8B716" stroke-dasharray="282.7 1112.2" stroke-dashoffset="-348.7"/>
+          <circle cx="260" cy="260" r="222" stroke="#503B96" stroke-dasharray="282.7 1112.2" stroke-dashoffset="-697.4"/>
+          <circle cx="260" cy="260" r="222" stroke="#503B96" stroke-dasharray="282.7 1112.2" stroke-dashoffset="-1046.2"/>
+        </g>
+      </svg>
+    </div>
+  </div>
+</section>

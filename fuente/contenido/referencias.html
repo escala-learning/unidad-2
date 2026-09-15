@@ -1,0 +1,76 @@
+      <header class="ova-screen__head" data-reveal>
+        <div class="ova-screen__eyebrow">Fuentes académicas</div>
+        <h1 class="ova-screen__title">Referencias</h1>
+        <p class="ova-screen__lead">
+          Fuentes citadas a lo largo de la unidad, en formato APA.
+        </p>
+      </header>
+
+      <!-- Literal del DI §Referencias; solo llevan enlace las que el DI trae con DOI -->
+      <div class="sl-referencias" data-reveal>
+        <p><span class="sl-ref__firma">Ji, Z., Lee, N., Frieske, R., Yu, T., Su, D., Xu, Y., Ishii, E., Bang, Y. J., Madotto, A., y Fung, P. (2023).</span> Survey of hallucination in natural language generation. <em>ACM Computing Surveys, 55</em>(12), 1-38.</p>
+        <p><span class="sl-ref__firma">Kahneman, D. (2011).</span> <em>Thinking, fast and slow</em>. Farrar, Straus and Giroux.</p>
+        <p><span class="sl-ref__firma">Kerr, J., van der Bles, A.-M., Dryhurst, S., Schneider, C. R., Chopurian, V., Freeman, A. L. J. y van der Linden, S. (2023).</span> The effects of communicating uncertainty around statistics, on public trust. <em>Royal Society Open Science, 10</em>(11), 230604. <a class="sl-ref__url" href="https://doi.org/10.1098/rsos.230604" target="_blank" rel="noopener">https://doi.org/10.1098/rsos.230604</a></p>
+        <p><span class="sl-ref__firma">Lyell, D., Magrabi, F., Raban, M. Z., Pont, L. G., Baysari, M. T., Day, R. O. y Coiera, E. (2017).</span> Automation bias in electronic prescribing. <em>BMC Medical Informatics and Decision Making, 17</em>, 28. <a class="sl-ref__url" href="https://doi.org/10.1186/s12911-017-0425-5" target="_blank" rel="noopener">https://doi.org/10.1186/s12911-017-0425-5</a></p>
+        <p><span class="sl-ref__firma">Nickerson, R. S. (1998).</span> Confirmation bias: A ubiquitous phenomenon in many guises. <em>Review of General Psychology, 2</em>(2), 175-220.</p>
+        <p><span class="sl-ref__firma">Parasuraman, R., y Riley, V. (1997).</span> Humans and automation: Use, misuse, disuse, abuse. <em>Human Factors, 39</em>(2), 230-253.</p>
+        <p><span class="sl-ref__firma">Perkins, D. N., y Salomon, G. (1992).</span> Transfer of learning. En T. Husén y T. N. Postlethwaite (Eds.), <em>International encyclopedia of education</em> (2.ª ed.). Pergamon Press.</p>
+        <p><span class="sl-ref__firma">Skitka, L. J., Mosier, K. L., y Burdick, M. (1999).</span> Does automation bias decision-making? <em>International Journal of Human-Computer Studies, 51</em>(5), 991-1006.</p>
+        <p><span class="sl-ref__firma">Spiegelhalter, D. (2017).</span> Risk and uncertainty communication. <em>Annual Review of Statistics and Its Application, 4</em>, 31-60.</p>
+        <p><span class="sl-ref__firma">van der Bles, A. M., van der Linden, S., Freeman, A. L. J., Mitchell, J., Galvão, A. B., Zaval, L., y Spiegelhalter, D. J. (2019).</span> Communicating uncertainty about facts, numbers and science. <em>Royal Society Open Science, 6</em>(5), 181870.</p>
+      </div>
+
+      <!-- Recurso audiovisual citado en el tema 3 -->
+      <div class="ova-callout" style="margin-top:44px;" data-reveal>
+        <div class="ova-callout__ico"><iconify-icon icon="mdi:movie-open-outline"></iconify-icon></div>
+        <div>
+          <span class="ova-callout__tag">Video de apoyo</span>
+          <p style="margin:8px 0 0;">
+            Msahique. (2024). <em>Medical AI Decision support</em> [Video]. Wikimedia Commons.
+            Licencia Creative Commons Atribución 4.0 Internacional (CC BY 4.0).
+            <a class="sl-ref__url" href="https://commons.wikimedia.org/wiki/File:Medical_AI_Decision_support.webm" target="_blank" rel="noopener">https://commons.wikimedia.org/wiki/File:Medical_AI_Decision_support.webm</a>
+          </p>
+        </div>
+      </div>
+
+      <div class="ova-callout" style="margin-top:40px;" data-reveal>
+        <div class="ova-callout__ico"><iconify-icon icon="mdi:school-outline"></iconify-icon></div>
+        <div>
+          <span class="ova-callout__tag">Créditos</span>
+          <p style="margin:8px 0 0;">
+            Unidad 2 del curso <strong>Toma de decisiones con datos + IA</strong>, producida por
+            Scala Learning.
+          </p>
+        </div>
+      </div>
+
+<!-- ova:extras -->
+<style>
+  /* Lista de referencias alineada por completo a la izquierda, sin la sangría
+     francesa de APA: decisión del cliente (confirmada 2026-09-01 en la U1). */
+  .sl-referencias p{
+    padding-left:0; text-indent:0;
+    margin:0 0 22px; line-height:1.65;
+  }
+  /* Viñeta sutil: un punto en violeta atenuado (el tono de las iniciales del glosario). */
+  .sl-referencias p::before{
+    content:'';
+    display:inline-block;
+    width:7px; height:7px;
+    border-radius:50%;
+    background:color-mix(in srgb, var(--c-acento) 38%, transparent);
+    margin-right:12px;
+    vertical-align:.12em;
+  }
+  /* El "asa" de la referencia: autores + año con peso, para escanear la lista */
+  .sl-ref__firma{ font-weight:650; color:var(--text-head); }
+  /* Las URL son enlaces de verdad; largas, así que pueden partirse */
+  .sl-ref__url{
+    color:var(--c-acento);
+    text-decoration:underline;
+    text-decoration-color:color-mix(in srgb, var(--c-acento) 40%, transparent);
+    text-underline-offset:3px;
+    overflow-wrap:anywhere;
+  }
+  .sl-ref__url:hover{ text-decoration-color:var(--c-acento); }
+</style>
