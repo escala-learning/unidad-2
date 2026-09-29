@@ -44,6 +44,9 @@
     font-size:clamp(2.6rem, 5.6vw, 4.2rem); line-height:1.06; letter-spacing:-.02em;
   }
   .sl-portada__title .sl-suave{ color:rgba(255,255,255,.68); font-weight:300; }
+  /* Título largo (el del DI trae dos puntos y su remate): un escalón menos, para que el
+     bloque completo —título, subtítulo, frase y botón— siga cabiendo en la primera pantalla */
+  .sl-portada__title--largo{ font-size:clamp(2.1rem, 4.2vw, 3.2rem); margin-bottom:14px; }
   .sl-portada__sub{
     margin:0 0 28px; color:rgba(255,255,255,.72);
     font-size:clamp(1rem, 1.6vw, 1.2rem); font-weight:300;
@@ -123,11 +126,12 @@
 
       <div class="sl-portada__eyebrow">Scala Virtual · Unidad 2</div>
 
-      <h1 class="sl-portada__title">
-        De la respuesta <span class="sl-suave">a la</span> <span class="sl-italic">recomendación</span>
+      <h1 class="sl-portada__title sl-portada__title--largo">
+        De la respuesta <span class="sl-suave">a la</span> recomendación:
+        <span class="sl-italic">audita antes de confiar</span>
       </h1>
 
-      <p class="sl-portada__sub">Audita antes de confiar · Toma de decisiones con datos&nbsp;+&nbsp;IA</p>
+      <p class="sl-portada__sub">Toma de decisiones con datos&nbsp;+&nbsp;IA</p>
 
       <!-- Idea clave de la introducción, literal -->
       <p class="sl-portada__quote">
